@@ -6,16 +6,19 @@ class Node:
         self.right = right
     
 def validate(root: Node):
-    last = root.val
+    inorderTraversal = []
     def inorder(node: Node):
         if not node:
             return
         inorder(node.left)
-        print(node.val, end = " ")
+        inorderTraversal.append(node.val)
         inorder(node.right)
     inorder(root)
-    print("valid")
-
+    for i in range(len(inorderTraversal) - 1):
+        if inorderTraversal[i] > inorderTraversal[i+1]:
+            print("invalid bst")
+            return
+    print("valid bst")
 
 def main():
     root = Node(6)

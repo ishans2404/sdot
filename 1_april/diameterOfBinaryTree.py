@@ -1,32 +1,39 @@
-# given bianry tree, diameter is the max distance between any two nodes in a tree
+# given bianry tree, diameter is the max distance between any two nodes in a tree                             
 class Node:
-    def __init__(self, val, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+    def __init__(self, val):
+        self.data = val
+        self.left = None
+        self.right = None
+
+class Solution:
+    def diameterOfBinaryTree(self, root):
+        diameter = [0]
+        self.height(root, diameter)
+        return diameter[0]
+
+    def height(self, node, diameter):
+        if not node:
+            return 0
+        lh = self.height(node.left, diameter)
+        rh = self.height(node.right, diameter)
+        diameter[0] = max(diameter[0], lh + rh)
+        return 1 + max(lh, rh)
+
+
+
+if __name__ == "__main__":
     
-def height(node: Node, diameter):
-    if not node:
-        return 0
-    lh = height(node.left, diameter)
-    rh = height(node.right, diameter)
-    diameter[0] = max(diameter[0], lh + rh)
-    return 1 + max(lh, rh)
-
-def findDiameter(root: Node):
-    diameter = [0]
-    height(root, diameter)
-    print(diameter[0])
-
-def main():
-    root = Node(6)
-    root.left = Node(3)
-    root.right = Node(5)
-    root.left.left = Node(2)
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
     root.left.right = Node(5)
-    root.right.right = Node(4)
-    root.left.right.left = Node(7)
-    root.left.right.right = Node(4)
-    findDiameter(root)
+    root.left.right.right = Node(6)
+    root.left.right.right.right = Node(7)
 
-main()
+    solution = Solution()
+
+    diameter = solution.diameterOfBinaryTree(root)
+    print("The diameter of the binary tree is:", diameter)
+                                
+                            

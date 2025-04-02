@@ -27,6 +27,6 @@ def main():
     root.left.right = Node(5)
     root.right.left = Node(7)
     root.right.right = Node(9)
-    kthSmallest(root, k=4)
+    kthSmallest(root, k=1)
 
 main()
