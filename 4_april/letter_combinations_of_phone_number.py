@@ -21,6 +21,7 @@ def letter_combinations(digits):
     backtrack(0, [])
     return combinations
 
-# User input
-digits = input("Enter digits (2-9) to find corresponding letter combinations: ")
-print("Possible letter combinations:", letter_combinations(digits))
+digits = input()
+result = letter_combinations(digits)
+for res in result:
+    print(res, end = " ")
